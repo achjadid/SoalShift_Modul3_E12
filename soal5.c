@@ -4,23 +4,42 @@
 #include<stdlib.h>
 #include<unistd.h> 
 
-int main()
+void* findword(void* arg)
 {	
-	char text[1000];
+	int i=0, a;
+	char text[1500];
 	char *word;
 	FILE *novel;
 	scanf("%s",word);
-	novel=fopen("novel.txt","r");
+	a=strlen(word);
+	novel=fopen("Novel.txt","r");
 	while(fscanf(novel,"%s",text)!=EOF)
 	{
-		if(strcmp(text,word)==0)
+		if(!strncmp(text,word,a))
 		{	
-			printf("ada");
-		}
-		else
-		{
-			printf("g ada");
+			i++;
 		}
 	}
+	printf("%s: %d\n",word,i);
+	fclose(novel);
+	return 0;
+}
+
+int main()
+{
+	int i;
+	int err;
+	pthread_t tid[2];	
+	for(i=0;i<2;i++)
+	{
+		err=pthread_create(&(tid[i]),NULL,&findword,NULL);
+		if(err!=0)
+	        {
+			printf("\n can't create thread : [%s]",strerror(err));
+		}
+
+	}
+	pthread_join(tid[0],NULL);
+	pthread_join(tid[1],NULL);
 	return 0;
 }
