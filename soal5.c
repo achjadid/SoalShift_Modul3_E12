@@ -6,21 +6,19 @@
 
 int main()
 {	
-	char text[1000];
+	int i=0;
+	char text[1500];
 	char *word;
 	FILE *novel;
 	scanf("%s",word);
-	novel=fopen("novel.txt","r");
+	novel=fopen("Novel.txt","r");
 	while(fscanf(novel,"%s",text)!=EOF)
 	{
 		if(strcmp(text,word)==0)
 		{	
-			printf("ada");
-		}
-		else
-		{
-			printf("g ada");
+			i++;
 		}
 	}
+	printf("%s: %d\n",word,i);
 	return 0;
 }
