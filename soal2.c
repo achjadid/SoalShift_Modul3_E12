@@ -15,7 +15,7 @@ int condition;
 
 void* play1(void *arg){
 	while(1){
-		printf("player 1 : %d, player 2 : %d\n", nilai1, nilai2);
+		printf("player 1 : %s\nnilai : %d\nplayer 2 : %s\nnilai : %d\n", player1, nilai1, player2, nilai2);
 		condition=1;
 		printf("ranjau pemain 1 (max 4) : ");
 		scanf("%d", &ranjau);
@@ -71,7 +71,7 @@ void* play2(void *arg){
 			condition=4;
 			return NULL;
 		}
-		printf("player 1 : %d, player 2 : %d\n", nilai1, nilai2);
+		printf("player 1 : %s\nnilai : %d\nplayer 2 : %s\nnilai : %d\n", player1, nilai1, player2, nilai2);
 		printf("ranjau pemain 2 (max 4) : ");
 		scanf("%d", &ranjau);
 		for(int i=0;i<ranjau;i++){
@@ -102,6 +102,6 @@ int main(){
 		pthread_join(thr1,NULL);
 		pthread_join(thr2,NULL);
 		while(condition!=4);
-		printf("player 1 : %d, player 2 : %d\n", nilai1, nilai2);
+		printf("player 1 : %s\nnilai : %d\nplayer 2 : %s\nnilai : %d\n", player1, nilai1, player2, nilai2);
 	}
 }
