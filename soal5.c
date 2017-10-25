@@ -15,7 +15,7 @@ void* findword(void* arg)
 	novel=fopen("Novel.txt","r");
 	while(fscanf(novel,"%s",text)!=EOF)
 	{
-		if(strcmp(text,word)==0)
+		if(!strncmp(text,word,a))
 		{	
 			i++;
 		}
@@ -23,7 +23,6 @@ void* findword(void* arg)
 	printf("%s: %d\n",word,i);
 	fclose(novel);
 	return 0;
-	
 }
 
 int main()
@@ -42,5 +41,5 @@ int main()
 	}
 	pthread_join(tid[0],NULL);
 	pthread_join(tid[1],NULL);
-    return 0;
+	return 0;
 }
