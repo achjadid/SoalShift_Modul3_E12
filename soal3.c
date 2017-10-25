@@ -11,6 +11,8 @@ int kepiting=100;
 pthread_t cek[4];
 
 void menu(){
+	printf("lohan : %d\n", lohan);
+	printf("kepiting : %d\n", kepiting);
 	printf("Pilih menu :\n");
 	printf("1.Beri makan lohan\n");
 	printf("2.Beri makan kepiting\n");
@@ -48,5 +50,24 @@ void* activity(void *agr){
 }
 
 int main(){
-	
+	int err1,err2,err3;
+	int opt;
+	err1=pthread_create(&(cek[0]),NULL,&activity,NULL);
+	err2=pthread_create(&(cek[1]),NULL,&activity,NULL);
+	while(1){
+		if(lohan<=0 || lohan>100){
+			printf("lohan mati, game selesai\n");
+			break;
+		}
+		else if(kepiting<=0 || kepiting>100){
+			printf("kepiting mati, game selesai\n");
+			break;
+		}
+		else{
+			menu();
+			scanf("%d", &opt);
+			if(opt==1) err3=pthread_create(&(cek[2]),NULL,&activity,NULL);
+			else if(opt==2) err3=pthread_create(&(cek[3]),NULL,&activity,NULL);
+		}
+	}
 }
