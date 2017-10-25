@@ -6,6 +6,17 @@
 
 int num[101];
 
+void* factorial(void *arg){
+	int *x=arg;
+	int res;
+	if(num[*x]==1) res=1;
+	else if(num[*x]>1){
+		res=1;
+		for(int i=2;i<=num[*x];i++) res*=i;
+	}
+	printf("Hasil %d! = %d\n", num[*x],res);
+}
+
 int main(){
 	char strfac[101];
 	char temp,temp1,temp2;
